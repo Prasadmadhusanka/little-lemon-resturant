@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 function Nav() {
   return (
-    <nav>
+    <nav className="navbar">
       <ul>
         <li>
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <a href="/about">About</a>
@@ -12,7 +14,7 @@ function Nav() {
           <a href="/menu">Menu</a>
         </li>
         <li>
-          <a href="/reservations">Reservations</a>
+        <Link to="/reservation">Reservations</Link>
         </li>
         <li>
           <a href="/order_online">Order Online</a>

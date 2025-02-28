@@ -8,7 +8,7 @@ function Footer() {
           <img
             src={logo_footer}
             alt="Little Lemon Restaurant Logo"
-            width="50"
+            width="100"
           />
         </div>
 
@@ -49,13 +49,13 @@ function Footer() {
           <h3>Social Media</h3>
           <ul>
             <li>
-              <a href="https://facebook.com/littlelemon">Facebook</a>
+              <a href="">Facebook</a>
             </li>
             <li>
-              <a href="https://twitter.com/littlelemon">Twitter</a>
+              <a href="">Twitter</a>
             </li>
             <li>
-              <a href="https://instagram.com/littlelemon">Instagram</a>
+              <a href="">Instagram</a>
             </li>
           </ul>
         </div>

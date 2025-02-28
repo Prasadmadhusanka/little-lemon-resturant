@@ -53,6 +53,60 @@
   text-decoration: none;
 }
 
+form {
+  display: grid;
+  max-width: 300px;
+  gap: 15px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+input[type="submit"] {
+  background: #f4ce14;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+  padding: 10px;
+}
+
+input[type="submit"]:hover {
+  background: #d6b92a;
+}
+
+@media (max-width: 400px) {
+  form {
+    max-width: 100%;
+    padding: 15px;
+  }
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

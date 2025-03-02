@@ -107,6 +107,10 @@ input[type="submit"]:hover {
   }
 }
 
+.main{
+  display: flex;             /* Enable Flexbox layout */
+  justify-content: center;   /* Center items horizontally */
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

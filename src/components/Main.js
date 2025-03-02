@@ -3,22 +3,29 @@ import HomePage from "./HomePage";
 import ReservationPage from "./ReservationPage";
 import { useReducer } from "react";
 
-// Reducer function to manage available times
+// Function to initialize available times
+const initializeTimes = () => [
+  "17:00",
+  "18:00",
+  "19:00",
+  "20:00",
+  "21:00",
+  "22:00",
+];
+
+// Reducer function to update available times based on selected date
 function timeReducer(state, action) {
   switch (action.type) {
     case "SET_TIMES":
-      // For now, returning the same available times regardless of the date
-      return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+      return initializeTimes(); // Future improvement: Modify based on date
     default:
       return state;
   }
 }
 
-// Initial state setup for availableTimes
-const initialState = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
 
 function Main() {
-  const [availableTimes, dispatch] = useReducer(timeReducer, initialState);
+  const [availableTimes, dispatch] = useReducer(timeReducer, initializeTimes());
 
   // Function to update available times based on the selected date
   const updateTimes = (selectedDate) => {
@@ -27,7 +34,7 @@ function Main() {
   };
 
   return (
-    <main>
+    <main className="main">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route

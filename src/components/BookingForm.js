@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function BookingForm({ availableTimes, updateTimes }) {
-  // Define state for form fields
+function BookingForm({ availableTimes, dispatch }) {
   const [formData, setFormData] = useState({
     date: "",
     time: "",
@@ -16,60 +15,72 @@ function BookingForm({ availableTimes, updateTimes }) {
 
   const handleDateChange = (e) => {
     const newDate = e.target.value;
-    setFormData({ ...formData, date: newDate });
-    // Dispatch state change to update available times based on selected date
-    updateTimes(newDate);
+    setFormData({ ...formData, date: newDate, time: "" });
+
+    // Dispatch action to update available times
+    dispatch({ type: "SET_TIMES", date: newDate });
   };
 
-  // Handle form submission (can be connected to an API later)
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.time) {
+      alert("Please select a time for your reservation.");
+      return;
+    }
     console.log("Reservation Details:", formData);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label for="res-date">Choose date *</label>
-      <input
-        type="date"
-        id="res-date"
-        value={formData.date}
-        onChange={handleDateChange} // Use custom handler for date change
-        required
-      />
-      <label for="res-time">Choose time *</label>
-      <select
-        id="res-time"
-        value={formData.time}
-        onChange={handleChange}
-        required
-      >
-        <option value="" disabled>
-          Select a time
-        </option>
-        {availableTimes.map((time) => (
-          <option key={time} value={time}>
-            {time}
+    <div>
+      <h3>Reservation Page</h3>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="res-date">Choose date *</label>
+        <input
+          type="date"
+          id="res-date"
+          value={formData.date}
+          onChange={handleDateChange}
+          required
+        />
+
+        <label htmlFor="res-time">Choose time *</label>
+        <select
+          id="res-time"
+          value={formData.time}
+          onChange={handleChange}
+          required
+          disabled={!availableTimes.length}
+        >
+          <option value="" disabled>
+            {availableTimes.length ? "Select a time" : "No available times"}
           </option>
-        ))}
-      </select>
-      <label for="guests">Number of guests *</label>
-      <input
-        type="number"
-        min="1"
-        max="10"
-        id="guests"
-        value={formData.guests}
-        onChange={handleChange}
-        required
-      />
-      <label for="occasion">Occasion</label>
-      <select id="occasion" value={formData.occasion} onChange={handleChange}>
-        <option>Birthday</option>
-        <option>Anniversary</option>
-      </select>
-      <input type="submit" value="Make Your reservation" />
-    </form>
+          {availableTimes.map((time) => (
+            <option key={time} value={time}>
+              {time}
+            </option>
+          ))}
+        </select>
+
+        <label htmlFor="guests">Number of guests *</label>
+        <input
+          type="number"
+          min="1"
+          max="10"
+          id="guests"
+          value={formData.guests}
+          onChange={handleChange}
+          required
+        />
+
+        <label htmlFor="occasion">Occasion</label>
+        <select id="occasion" value={formData.occasion} onChange={handleChange}>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+        </select>
+
+        <input type="submit" value="Make Your Reservation" />
+      </form>
+    </div>
   );
 }
 

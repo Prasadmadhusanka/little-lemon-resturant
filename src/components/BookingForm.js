@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function BookingForm({ availableTimes, updateTimes }) {
+function BookingForm({ availableTimes, updateTimes, submitForm }) {
   const [formData, setFormData] = useState({
     date: "",
     time: "",
@@ -38,8 +38,8 @@ function BookingForm({ availableTimes, updateTimes }) {
       return;
     }
     console.log("Reservation Details:", formData);
-    // Submit the form data using submitAPI (optional if needed)
-    // submitAPI(formData);
+
+    submitForm(formData); // Call submitForm with form data
   };
 
   return (
@@ -53,11 +53,12 @@ function BookingForm({ availableTimes, updateTimes }) {
           value={formData.date}
           onChange={handleDateChange}
           required
+          min={new Date().toISOString().split("T")[0]}
         />
 
-        <label htmlFor="res-time">Choose time *</label>
+        <label htmlFor="time">Choose time *</label>
         <select
-          id="res-time"
+          id="time"
           value={formData.time}
           onChange={handleChange}
           required
@@ -90,7 +91,11 @@ function BookingForm({ availableTimes, updateTimes }) {
           <option>Anniversary</option>
         </select>
 
-        <input type="submit" value="Make Your Reservation" />
+        <input
+          type="submit"
+          value="Make Your Reservation"
+          aria-label="Submit your reservation"
+        />
       </form>
     </div>
   );

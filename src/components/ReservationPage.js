@@ -1,12 +1,12 @@
 import BookingForm from "./BookingForm";
 
-function ReservationPage({ availableTimes, dispatch }) {
+function ReservationPage({ availableTimes, updateTimes }) {
   return (
     <div>
       {/* Pass availableTimes to BookingForm */}
       <BookingForm
         availableTimes={availableTimes}
-        dispatch={dispatch}
+        updateTimes={updateTimes}
       ></BookingForm>
     </div>
   );

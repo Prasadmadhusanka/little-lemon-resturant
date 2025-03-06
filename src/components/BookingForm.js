@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function BookingForm({ availableTimes, dispatch }) {
+function BookingForm({ availableTimes, updateTimes }) {
   const [formData, setFormData] = useState({
     date: "",
     time: "",
@@ -10,15 +10,25 @@ function BookingForm({ availableTimes, dispatch }) {
 
   // Handle input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    const { id, value } = e.target;
+    console.log("Updating:", id, "with value:", value);
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value, // Make sure time is properly updated
+    }));
   };
+
+  useEffect(() => {
+    console.log("Updated formData:", formData);
+  }, [formData]);
 
   const handleDateChange = (e) => {
     const newDate = e.target.value;
     setFormData({ ...formData, date: newDate, time: "" });
 
-    // Dispatch action to update available times
-    dispatch({ type: "SET_TIMES", date: newDate });
+    // Call updateTimes to update available times based on the new date
+    updateTimes(new Date(newDate)); // Convert the string date to a Date object
   };
 
   const handleSubmit = (e) => {
@@ -28,6 +38,8 @@ function BookingForm({ availableTimes, dispatch }) {
       return;
     }
     console.log("Reservation Details:", formData);
+    // Submit the form data using submitAPI (optional if needed)
+    // submitAPI(formData);
   };
 
   return (

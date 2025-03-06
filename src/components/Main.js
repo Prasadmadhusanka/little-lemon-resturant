@@ -2,27 +2,23 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import ReservationPage from "./ReservationPage";
 import { useReducer } from "react";
+import { fetchAPI } from "../utils/api"; // Import the fetchAPI function
 
-// Function to initialize available times
-const initializeTimes = () => [
-  "17:00",
-  "18:00",
-  "19:00",
-  "20:00",
-  "21:00",
-  "22:00",
-];
+// Function to initialize available times for today
+const initializeTimes = () => {
+  const today = new Date(); // Get today's date
+  return fetchAPI(today); // Fetch available times for today
+};
 
 // Reducer function to update available times based on selected date
 function timeReducer(state, action) {
   switch (action.type) {
     case "SET_TIMES":
-      return initializeTimes(); // Future improvement: Modify based on date
+      return fetchAPI(action.date); // Fetch available times based on selected date
     default:
       return state;
   }
 }
-
 
 function Main() {
   const [availableTimes, dispatch] = useReducer(timeReducer, initializeTimes());

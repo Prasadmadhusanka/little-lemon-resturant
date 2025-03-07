@@ -1,6 +1,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import HomePage from "./HomePage";
 import ReservationPage from "./ReservationPage";
+import Menu from "./Menu";
 import { useReducer } from "react";
 import { fetchAPI, submitAPI } from "../utils/api"; // Import the fetchAPI function
 import ConfirmedBooking from "./ConfirmedBooking"; // Import the new page
@@ -55,8 +56,8 @@ function Main() {
             />
           }
         />
-        <Route path="/confirmation" element={<ConfirmedBooking />} />{" "}
-        {/* Add this route */}
+        <Route path="/confirmation" element={<ConfirmedBooking />} />
+        <Route path="/menu" element={<Menu />} />
       </Routes>
     </main>
   );

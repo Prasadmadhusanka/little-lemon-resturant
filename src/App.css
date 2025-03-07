@@ -23,16 +23,74 @@
   padding: 1rem;
 }
 
+/* Navbar Styles */
 .navbar ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar ul li a {
   color: black;
   text-decoration: none;
+  font-size: 16px;
 }
+
+/* Hamburger icon for mobile */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+}
+
+/* For small screens */
+@media (max-width: 768px) {
+  /* Navbar items hidden by default */
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* Show menu when it's toggled */
+  .navbar ul.open {
+    display: flex;
+  }
+
+  /* Hamburger icon visible */
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar ul li a {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For very small screens (mobile) */
+  .navbar ul {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+}
+
+
 
 .footer-container {
   display: grid;
